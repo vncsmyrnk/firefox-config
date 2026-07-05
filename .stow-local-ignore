@@ -6,4 +6,5 @@
 
 justfile
 policies.json
+config
 vimium-c-config.json
