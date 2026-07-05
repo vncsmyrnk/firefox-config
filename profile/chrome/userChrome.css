@@ -639,7 +639,7 @@ sidebar-main,
    a deliberate step up from the 12px labels: the URL reads slightly more
    prominent while the baselines stay aligned (sub-pixel offset, invisible). */
 #urlbar-input {
-  font-size: 13px !important;
+  font-size: 15px !important;
 }
 
 /* Nova rebuilt the urlbar as <moz-urlbar> and moved its internals from
