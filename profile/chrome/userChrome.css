@@ -1376,18 +1376,47 @@ browser[type="content"],
   outline-color: var(--toolbarseparator-color) !important;
 }
 
-.tab-close-button {
+/* tab close button: hidden by default, visible on hover */
+.tabbrowser-tab:not([pinned]) .tab-close-button {
   display: none !important;
+}
+.tabbrowser-tab:not([pinned]):hover .tab-close-button {
+  /* revert (not -moz-inline-block: a removed alias that parses as invalid and
+     gets dropped, leaving the base display:none). revert restores the native
+     close-button display so it reappears on hover. */
+  display: revert !important;
+}
+
+/* Close X sat ~2px low: it's a 24x24 border-box <image> and the icon scales
+   to its content box. Native 6px padding all round left a 12x12 content box,
+   so the 16px X drew low. Zeroing only the block padding (first attempt)
+   recentred it but made the box 24x12 and stretched the X vertically. The
+   icon must keep a SQUARE content box to stay proportional: 4px symmetric
+   padding gives a 16x16 content box — the 16px X fits exactly, unstretched,
+   and centres on the tab-label line (box centre is already at centerY 22). */
+.tab-close-button {
+  padding: 4px !important;
+  /* The icon won't scale below its 16px intrinsic size via padding (it
+     overflows instead), and 16px reads too large. transform: scale shrinks
+     the rendered X around its centre without touching the layout box, so the
+     24x24 click target and the centerY-22 alignment are preserved. Tune the
+     factor for size: 0.75 ≈ 12px.
+     Nova shifted the tab-label line down ~1px, leaving the X reading 1px high
+     against the label. translateY nudges the rendered icon back onto the line.
+     Order matters: translateY is the LEFTMOST transform so it applies in
+     screen space at a full 1px — placed after scale it would be scaled to
+     0.75px. Pure visual shift; the 24x24 layout/click box is untouched. */
+  transform: translateY(1px) scale(0.75) !important;
 }
 
 /* adaptive tab width */
-.tabbrowser-tab[selected][fadein]:not([pinned]):not(tab-group[collapsed] .tabbrowser-tab):hover {
+.tabbrowser-tab[selected][fadein]:not([pinned]):not(tab-group[collapsed] .tabbrowser-tab) {
   max-width: var(--uc-active-tab-width) !important;
 }
-.tabbrowser-tab[fadein]:not([selected]):not([pinned]):not(tab-group[collapsed] .tabbrowser-tab):hover {
+.tabbrowser-tab[fadein]:not([selected]):not([pinned]):not(tab-group[collapsed] .tabbrowser-tab) {
   max-width: var(--uc-inactive-tab-width) !important;
 }
-.tabbrowser-tab[fadein]:not([pinned]):not(tab-group[collapsed] .tabbrowser-tab):hover {
+.tabbrowser-tab[fadein]:not([pinned]):not(tab-group[collapsed] .tabbrowser-tab) {
   min-width: var(--uc-tab-min-width) !important;
 }
 
@@ -1804,9 +1833,4 @@ html[id^="taskbartab"] #urlbar-container {
 
 #nav-bar toolbarspring {
   display: none !important;
-}
-
-.tabbrowser-tab:not([selected]) {
-  min-width: 45px !important;
-  max-width: 45px !important;
 }
