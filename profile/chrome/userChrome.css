@@ -31,8 +31,8 @@
   /* URL Bar width (min applied normally, max on focus). The px ceiling caps
      growth on ultrawide/4K, where bare vw scales to absurd widths (issue #6).
      Caps engage from ~1800px CSS-px viewport; below that the vw value wins. */
-  --uc-urlbar-min-width: min(35vw, 630px);
-  --uc-urlbar-max-width: min(50vw, 900px);
+  --uc-urlbar-min-width: min(35vw, 750px);
+  --uc-urlbar-max-width: min(50vw, 750px);
 
   /* Dynamic tab widths. The inactive ceiling is intentionally lower than the
      active one: inactive tabs cap sooner, freeing strip space for the active
@@ -1829,4 +1829,8 @@ html[id^="taskbartab"] #urlbar-container {
     animation: none !important;
     transform: scaleX(1) !important;
   }
+}
+
+#navbar toolbarspring {
+  display: none !important;
 }
