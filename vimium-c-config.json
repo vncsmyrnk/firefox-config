@@ -1,0 +1,13 @@
+{
+  "name": "Vimium C",
+  "@time": "7/4/2026, 10:47:23 PM",
+  "time": 1783216043765,
+  "environment": {
+    "extension": "2.12.3",
+    "platform": "linux",
+    "firefox": 152
+  },
+  "filterLinkHints": true,
+  "keyLayout": 2,
+  "vimSync": true
+}

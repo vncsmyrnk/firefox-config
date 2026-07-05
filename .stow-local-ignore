@@ -1,0 +1,9 @@
+\.git
+\.gitignore
+
+^/README.*
+^/LICENSE.*
+
+justfile
+policies.json
+vimium-c-config.json
