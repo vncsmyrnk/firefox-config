@@ -1831,6 +1831,6 @@ html[id^="taskbartab"] #urlbar-container {
   }
 }
 
-#navbar toolbarspring {
+#nav-bar toolbarspring {
   display: none !important;
 }
