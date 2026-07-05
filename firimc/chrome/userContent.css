@@ -1,0 +1,78 @@
+/*==============================================================================================*
+
+  FoxOne — userContent.css
+  Styles for browser content pages (new tab, home).
+
+*==============================================================================================*/
+
+
+/* ==========================================================================
+   CONFIG
+   ========================================================================== */
+
+:root {
+  /* Scrollbar visibility in web content
+   * none = hidden (scroll via mousewheel/keyboard/touchpad)
+   * thin = always visible, slim style
+   * auto = default OS scrollbar */
+  --uc-content-scrollbar: auto;
+}
+
+
+/* ==========================================================================
+   SCROLLBAR
+   ========================================================================== */
+
+* {
+  scrollbar-width: var(--uc-content-scrollbar) !important;
+}
+
+
+/* ==========================================================================
+   NEW TAB / HOME — Gruvbox Dark (dark mode only)
+   ========================================================================== */
+
+
+@-moz-document url-prefix("about:newtab"), url-prefix("about:home") {
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --newtab-background-color: #282828 !important;
+      --newtab-text-primary-color: #FFFFFF !important;
+    }
+  }
+}
+
+
+/* ==========================================================================
+   SETTINGS PAGES — about:preferences, about:addons (Gruvbox Dark)
+   Pins background and selection/accent so they look identical across
+   machines, regardless of the OS accent colour or the active Firefox theme.
+   Both the legacy --in-content-* names and the newer --color-* design
+   tokens are set, so this survives Firefox's token renaming.
+   ========================================================================== */
+
+@-moz-document url-prefix("about:preferences"), url-prefix("about:addons") {
+  @media (prefers-color-scheme: dark) {
+    :root {
+      /* Page background */
+      --in-content-page-background: #282828 !important;
+      --background-color-canvas: #282828 !important;
+
+      /* Selection / accent — Gruvbox bright yellow, dark text for contrast */
+      --in-content-accent-color: #fabd2f !important;
+      --in-content-accent-color-active: #fabd2f !important;
+      --in-content-item-selected: #fabd2f !important;
+      --in-content-item-selected-text: #282828 !important;
+
+      --color-accent-primary: #fabd2f !important;
+      --color-accent-primary-hover: #fabd2f !important;
+      --color-accent-primary-active: #fabd2f !important;
+    }
+
+    /* Highlighted text */
+    ::selection {
+      background-color: #fabd2f !important;
+      color: #282828 !important;
+    }
+  }
+}
